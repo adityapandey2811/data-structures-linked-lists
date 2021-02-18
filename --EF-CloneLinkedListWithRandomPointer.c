@@ -24,6 +24,12 @@ struct Node* copyRandomList(struct Node* head) {
             new->random = NULL;
         new = new->next;
     }
-    
+    temp = head;
+    new = link;
+    while(new){
+        temp->next = new->next;
+        temp = temp->next;
+        new = new->next;
+    }
     return link;
 }
