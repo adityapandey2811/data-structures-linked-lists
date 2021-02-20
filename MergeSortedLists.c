@@ -3,33 +3,38 @@
 #include<stdlib.h>
 #include"ll.h"
 //Merging
-node *mergeSortedList(node *head1, node* head2){
-    node *temp1 = head1, *temp2 = head2, *new, *head;
-//Capture head pointer
-    (temp1->data>temp2->data)?(head = temp2):(head = temp1);
-    while(temp1 && temp2){
-        if(temp1->data >= temp2->data){
-            head2 = head2->next;
-            temp2->next = temp1;
-            temp2 = head2;
-        }
-        else{
-            head1 = head1->next;
-            temp1->next = temp2;
-            temp1 = head1;
-        }
-    }
-    return head;
+node* mergeSortedList(node *head1, node *head2){
+	node *temp1 = head1, *temp2 = head2, *spare, *head;
+	head = (node*)malloc(sizeof(node));
+	spare = head;
+	while(temp1 != NULL && temp2 != NULL){
+		if(temp1->data>=temp2->data){
+			spare->next = temp2;
+			temp2 = temp2->next;
+		}
+		else{
+			spare->next = temp1;
+			temp1 = temp1->next;
+		}
+		spare = spare->next;
+	}
+	if(temp1 == NULL)
+		spare->next = temp2;
+	else
+		spare->next = temp1;
+	spare = head->next;
+	free(head);
+	return spare;
 }
 //Main function
 void main(){
     node *head = NULL,*head1 = NULL,*head2 = NULL;
     int i;
 //List Creation
-    for(i=2;i>0;i--){
+    for(i=4;i>0;i--){
         head1 = insertAtEnd(head1);
     }
-    for(i=7;i>0;i--){
+    for(i=5;i>0;i--){
         head2 = insertAtEnd(head2);
     }
 //Storing merged list in head
