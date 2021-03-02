@@ -1,3 +1,4 @@
+//Linked list head by Aditya
 #ifndef ll_h
 #define ll_h
 #include<stdio.h>
