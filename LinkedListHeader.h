@@ -206,10 +206,9 @@ node* deleteList(node *head){
 	}
 	else{
 		while(head!=NULL){
-			temp = head->next;
-			head->next = NULL;
-			free(head);
-			head = temp;
+			temp = head;
+			head = head->next;
+			free(temp);
 		}
 	}
 	return head;
